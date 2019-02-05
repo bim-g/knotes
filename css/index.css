@@ -1,0 +1,40 @@
+.separMenu{margin-top:50px;margin-bottom: 50px;}
+.separMenuEdit{margin-top:50px;}
+.cahierligne{background:white;background:linear-gradient(top,#81cbbc,white 5%);background:-webkit-linear-gradient(top,#81cbbc,white 5%);background:-moz-linear-gradient(top,#81cbbc,white 5%);background:-o-linear-gradient(top,#81cbbc,white 5%);background:-ms-linear-gradient(top,#81cbbc,white 5%);background-size:100% 25px;-webkit-background-size:100% 25px;-moz-background-size:100% 25px;font-size:16px;}
+.recording{animation:fading 1s infinite}
+@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+.red{
+    background: #f44336!important;
+    -webkit-transform: rotateZ(50deg) ;
+    transform: rotateZ(50deg) ;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.redlft{
+    background: #2196F3!important;
+    -webkit-transform: rotateZ(0deg) ;
+    transform: rotateZ(0deg) ;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.rotation0{
+    -webkit-transform: rotateZ(0deg) ;
+    -moz-transform: rotateZ(0deg) ;
+    transform: rotateZ(0deg) ;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.rotation180{
+    -webkit-transform: rotateZ(-180deg) ;
+    -moz-transform: rotateZ(-180deg) ;
+    transform: rotateZ(-180deg) ;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+iframe{font-family:Verdana,sans-serif;font-size:20px;line-height:1.5}
+@media (max-height:568px){iframe{height: 350px;}}
+@media (min-height:667px){iframe{height: 450px;}}
+@media (height:737px){iframe{height: 520px;}}
+@media (min-height:800px){iframe{height: 600px;}}

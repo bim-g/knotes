@@ -1,0 +1,143 @@
+<div class="w3-top {{couleurCat}}  w3-row" >        
+    <a href="#!home" class="w3-button w3-col w3-border-right w3-xlarge"  style="width: 50px;"><i class="fa fa-angle-left"></i></a>
+    <p class="w3-rest w3-center"><Strong >{{categorie.nomcat}}</Strong></p>
+</div>
+<div class="separMenu">
+    <div class=" w3-light-gray w3-border-bottom ">
+        <button ng-if="mesaticle==1" class="w3-button w3-col w3-border-left w3-right " ng-click="toggle()" style="width: 50px;"><i class="fa fa-list-ul fa-flip-horizontal" ></i></button>
+        <header class="w3-padding  w3-center">
+            <span >Mes Article</span>
+        </header>
+    </div>
+    <div class="">
+        <h2 ng-if="none==0" class="w3-text-light-gray w3-padding">Pas d'Article . Veillez creez </h2>
+        <div class="w3-card w3-round w3-row" style="height: 47px;margin-bottom:5px;"   ng-repeat="art in articles">
+            <span class="w3-right w3-animate-right w3-border-left" ng-if="option==true" >
+                <button class="w3-col w3-btn " ng-click="setprotection=true" style="width:50px"><i class="fa fa-lock w3-xlarge w3-text-amber"></i></button>
+                <button class="w3-col w3-btn" ng-click="delElement('article',art.idArt)" style="width:50px"><i class="fa fa-trash-o w3-text-red w3-xlarge"></i></button>
+            </span>
+            <a href="#!lecture/{{art.idArt}}" style="text-decoration: none;white-space: nowrap;overflow: hidden;"><div class="w3-rest w3-padding-large"><i>{{art.nomArt}}</i></div></a>
+        </div>
+    </div>  
+  
+</div>     
+<div class="w3-bar  w3-bottom w3-margin-bottom">
+    <div class="w3-bottom w3-margin-bottom w3-animate-zoom" style="width: 50px;" ng-if="btn==true">
+        <button  class="w3-bar-item w3-button w3-indigo w3-circle w3-xlarge" ng-click="showModal('about')"><i class="fa fa-info-circle"></i></button>
+    </div>
+    <div class="w3-right w3-margin-right" >
+        <div ng-if="btn==true" class=" w3-margin-bottom  w3-animate-right " style="width: 50px;" > 
+            <a href="#!creat/{{idcat}}/1" class="w3-button w3-xlarge w3-circle w3-blue" ><i class="fa fa-pencil"></i></a>
+            <button  class="w3-bar-item w3-button w3-green w3-xlarge w3-circle " ng-click="showModal('edit')"><i class="fa fa-edit"></i></button>
+            <button  class="w3-bar-item w3-button w3-amber w3-text-white w3-circle w3-xlarge" ng-click="showModal('protection')"><i class="fa fa-lock"></i></button>
+            
+            <button ng-click="delElement('categorie')" class="w3-bar-item w3-button w3-black w3-text-red w3-circle w3-xlarge"><i class="fa fa-trash-o"></i></button>
+        </div>
+        <div ng-click="toggleButton()" class="">
+            <button  class="w3-btn w3-xlarge w3-circle w3-blue" ng-class="{red:btn==true,redlft:btn==false}" ><i class="fa fa-plus"></i>
+            </button> 
+        </div>
+    </div>     
+</div> 
+<!-- modal definir securite de l'article-->
+<div class="w3-modal w3-animate-zoom animate" ng-class="{modal: setprotection==true}">
+    <div class="w3-modal-content">
+        <div class="w3-container w3-blue w3-center">
+            <h3>Nom Article</h3>
+        </div>
+        <form >
+            <div class="w3-padding w3-light-gray w3-border-bottom">
+                <div class="w3-text-blue w3-right" ng-click="infosprotect=true"><i class="fa fa-info-circle"></i></div>
+                <strong class="">Type de  protection</strong>
+            </div>
+            <div class="w3-container ">
+                <div class="w3-row ">
+                    <div class="w3-col s6">
+                        <div>Ecriture</div>
+                        <input type="radio" class="w3-radio w3-margin-left" name="secu" value="ecriture">
+                    </div>
+                    <div class="w3-col s6">
+                        <div>Lecture</div>
+                        <input type="radio" class="w3-radio w3-margin-left" name="secu" value="lecture">
+                    </div> 
+                </div>           
+                <input type="password" class="w3-input w3-border w3-round-large w3-margin-top" placeholder="mot de pass">
+                <input type="password" class="w3-input w3-border w3-round-large w3-margin-top" placeholder="confirmer le mot de pass">
+            </div>
+            <div class="w3-bar w3-container w3-light-gray w3-padding w3-border-top w3-margin-top">
+                <input type="submit" class="w3-button w3-blue w3-right" value="Enregister" >
+                <input type="reset" class="w3-button w3-red" value="Annuler" ng-click="setprotection='none'" >
+            </div>
+        </form>
+    </div>
+    <div class="w3-modal " ng-class="{modal:infosprotect==true}">
+        <div class="w3-modal-content">
+            <div class="w3-padding w3-center w3-light-gray">Type de protection Infos</div>
+            <div class="w3-container w3-padding">
+                <strong class="w3-border-bottom">En Ecriture</strong>
+                <p>La Protection en écriture consiste à protéger votre document contre forme de modification possible. On ouvrir le document et voir son contenu pour le cas d'un dossier ou lire le contenu d'un article mais en aucun cas vous pouvait le modifier si vous ne disposez pas du mot_de_passe associé à ces document/article</p>
+                <strong class="w3-border-bottom">En Lecture</strong>
+                <p>La protection en lecture quant à elle, vous ne pouvez ni voire le contenu, ni faire des modifications, il est protégé en lecture et en écriture. Pour voir le contenu de ce dernier vous devez disposer du mot_de_pass associer pour lire le contenu ou faire des modifications.</p>
+                <button class="w3-btn w3-blue " ng-click="infosprotect=false" >Ok</button>
+            </div>
+        </div>
+    </div>  
+</div>
+<!-- Modal edit categorie new Categorie-->
+<div class="w3-modal w3-animate-zoom animate" id="editcatgorie" ng-class="{modal : editcatgorie==true}">    
+    <div class="w3-modal-content">
+        <form class="" ng-submit="editCatgorie()">
+            <div class="w3-container w3-padding  w3-center w3-light-gray">
+                <header class="w3-large ">
+                    <strong>{{categorie.nomcat}}</strong>
+                </header>
+            </div>
+            <input type="text" class="w3-input w3-border w3-round-large w3-margin-top" ng-model="categorieName" placeholder="Entrer le nom de la gategorie" maxlength="20">
+            <label class="w3-padding w3-opacity w3-tiny w3-pink w3-animate-left" ng-if="erreur==true">veillez entrer le nom de la categorie</label>
+            <p></p>
+            <div class="w3-center">
+                <div class="w3-light-gray w3-btn w3-round-large w3-center w3-margin-bottom" ng-click="showColors()">Choisissez une couleur <i class="fa fa-angle-double-down	
+                    " ></i></div>            
+                <div ng-show="colors" class="w3-container w3-bar w3-margin-top w3-margin-bottom w3-center w3-animate-right">
+                    <div class="w3-bar-item w3-btn w3-margin-right w3-red w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-red'"></div>
+                    <div class="w3-bar-item w3-btn w3-margin-right w3-yellow w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-yellow'"></div>
+                    <div class="w3-bar-item w3-btn w3-margin-right w3-pink w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-pink'"></div>
+                    <div class="w3-bar-item w3-btn w3-margin-right w3-green w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-green'"></div>
+                    <div class="w3-bar-item w3-btn w3-margin-right w3-blue w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-blue'"></div>
+                </div>
+            </div>
+            <div class="w3-bar w3-container w3-light-gray w3-padding w3-border-top ">
+                <input type="reset" value="Annuler" class="w3-button w3-red" ng-click="editcatgorie='';selectColor=undefined;" >
+                <input type="submit" value="Enregistrer" class="w3-button w3-blue w3-right">
+            </div>
+        </form>
+    </div>
+</div>
+<!-- modal Supression de l'article-->
+<div class="w3-modal w3-animate-zoom animate" ng-class="{modal: securite==true}">
+    <div class="w3-modal-content">
+        <div class="w3-container w3-blue">
+            <h3>Voulez-vous supprimer {{src}}?</h3>
+        </div>
+        <form >
+            <div class="w3-container">
+                            
+                <input type="password" class="w3-input w3-border w3-round-large w3-margin-top" placeholder="mot de pass">
+            </div>
+            <div class="w3-bar w3-container w3-light-gray w3-padding w3-border-top w3-margin-top">
+                <input type="submit" class="w3-button w3-blue w3-right" value="Enregister" >
+                <input type="reset" class="w3-button w3-red" value="Annuler" ng-click="setprotection='none';delArticle='hide'" >
+            </div>
+        </form>
+    </div>
+</div>
+<!-- About Dossier-->
+<div class="w3-modal w3-animate-zoom animate" ng-class="{modal: about==true}" ng-click="about=false">
+    <div class="w3-modal-content w3-round-large">
+        <header class="w3-padding w3-center {{couleurCat}}  ">"<strong>{{categorie.nomcat | uppercase}}</strong>"</header>
+        <div class="w3-padding">
+            <p>Date creation	:<strong>{{mydate | date : "fullDate"}}</strong></p>
+            <p>Niveau securite	:<strong></strong></p>
+        </div>
+    </div>
+</div>

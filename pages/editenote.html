@@ -1,0 +1,35 @@
+<div class="w3-top w3-light-gray w3-row" >
+		
+		<a ng-if="type==1" href="#!categorie/{{idcat}}" class="w3-button w3-col w3-border-right w3-xlarge"  style="width: 50px;"><i class="fa fa-angle-left"></i></a>
+		<a ng-if="type==2" href="#!lecture/{{idcat}}" class="w3-button w3-col w3-border-right w3-xlarge"  style="width: 50px;"><i class="fa fa-angle-left"></i></a>
+	</div>
+	<div class="separMenuEdit">
+		<form class="" ng-submit="controlArticle()">
+			<div class="w3-row w3-border-bottom w3-container">
+				<a ng-click="iBold()" class="w3-btn w3-col s2"><i class="fa fa-bold"></i></a>
+				<a ng-click="iItalic()" class="w3-btn w3-col s2"><i class="fa fa-italic"></i></a>
+				<a ng-click="iUnderline()" class="w3-btn w3-col s2"><i class="fa fa-underline"></i></a>
+				<label class="w3-btn w3-col s2 w3-border-bottom w3-border-red"><i class="fa fa-font"></i>
+					<input type="color" name="colorArt" id="colorArt" ng-model="colorArt" ng-click="iForeColor('colorArt')" hidden>
+				</label>
+				<a class="w3-btn w3-col s2 "><i class="fa fa-list-ol"></i></a> 
+				<a class="w3-btn w3-col s2"><i class="fa fa-list-ul"></i></a>
+			</div>
+			<span ng-if="recording==true" class="w3-text-red" >
+				<i class="fa fa-circle  w3-margin-left " ></i>
+				<span class="recording"> recording....</span>
+			</span>
+			<br/>
+			<input type="text" class="w3-input w3-border w3-round"  placeholder="titre de l'article" ng-model="titleArt" ng-touched="testT()"><br/>
+			<textarea col="15" row="15" placeholder="votre text" ng-model="contentArt"  hidden></textarea>
+			<iframe class="w3-border w3-input" style="width:100%"  >
+			</iframe>
+			<div class="w3-bar w3-bottom " > 
+				<a class="w3-button w3-xlarge w3-circle w3-right" ng-mousedown="Startspeech()" ng-mouseleave="Endspeech()" ><i class="fa fa-microphone"></i></a>
+				<span class="w3-button w3-xlarge w3-circle w3-left"></span>
+				<div class="w3-center w3-margin-bottom">
+					<button type="submit" class="w3-button w3-xlarge w3-circle w3-light-gray w3-border w3-border-blue" ng-click="setprotection='show'"><i class="fa fa-floppy-o w3-text-blue"></i></button>
+				</div> 
+			</div>
+		</form>
+</div>

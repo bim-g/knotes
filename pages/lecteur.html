@@ -1,0 +1,46 @@
+<div class="w3-top w3-light-gray w3-row" >
+	<div class="w3-col w3-dropdown-hover w3-right" style="width:50px;">
+		<button class="w3-button w3-xlarge w3-light-gray" style="width:50px;"><i class="fa fa-ellipsis-v"></i></button>
+		<div class="w3-dropdown-content w3-bar-block w3-card-4 w3-border w3-animate-zoom" style="right:0;z-index:2;">
+			<a href="#!creat/{{article.idArt}}/2" class="w3-bar-item w3-button"><i class="fa fa-edit w3-margin-right"></i> Modifier</a>
+			<button ng-click="protegerArt()" class="w3-bar-item w3-button"><i class="fa fa-lock w3-margin-right"></i> Proteger</button>
+			<button ng-click="infos='show'" class="w3-bar-item w3-button "><i class="fa fa-info-circle w3-text-blue w3-margin-right"></i> Apropos</a>
+			<button ng-click="deleteArt()" class="w3-bar-item w3-button w3-border-top"><i class="fa fa-trash-o  w3-margin-right w3-text-red"></i> Supprimer</button>
+		</div>				
+	</div>
+	<a href="#!categorie/{{article.idcat}}" class="w3-button w3-col w3-border-right w3-xlarge"  style="width: 50px;"><i class="fa fa-angle-left"></i></a>
+	<p class="w3-rest w3-center "><Strong >{{article.nomArt}}</Strong></p>
+</div>
+<div class="w3-container w3-card w3-round separMenu" >
+	<p class="w3-padding cahierligne" ng-bind-html="article.contenuArt"></p>	
+</div>
+<div class="w3-bottom w3-bar" >
+	<div class="w3-right w3-margin-bottom w3-margin-right" style="width: 50px;">
+		<div ng-if="lecteur==true" class="w3-animate-right">
+			<button class="w3-btn w3-xlarge w3-light-grey w3-padding" ng-click="lireText()" ng-if="play==false">
+				<i class="fa fa-play w3-text-blue "></i>
+			</button>
+			<button class="w3-btn w3-xlarge w3-light-grey w3-padding" ng-click="StoplireText()" ng-if="play==true">
+				<i class="fa fa-stop w3-text-red"></i>
+			</button>
+		</div>
+		<button  class="w3-btn w3-circle w3-xlarge w3-blue " ng-click="togleAudio()" ng-class="{red:lecteur==true}">
+			<i ng-if="lecteur==false" class="fa fa-headphones"></i>
+			<i ng-if="lecteur==true" class="fa fa-plus"></i>
+		</button>
+	</div>
+</div>
+<!-- //modal infos article  -->
+<div class="w3-modal w3-animate-zoom" ng-class="{modal:infos=='show'}" ng-click="infos=''">
+	<div class="w3-modal-content w3-round-large w3-center">
+		<header class="w3-indigo w3-padding">"<strong>{{article.nomArt | uppercase}}</strong>"</header>
+		<div class="w3-padding">
+			<p>Date creation	:<strong>{{mydate |date : "medium"}}</strong></p>
+			<p>Niveau securite	:<strong></strong></p>
+			<p>categorie		:<strong>{{idCat}}</strong></p>
+		</div>
+	</div>
+</div>
+<style>
+	.newred{background: #f44336!important}
+</style>

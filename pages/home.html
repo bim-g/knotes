@@ -1,0 +1,113 @@
+<div ng-controller="initcategorie" ng-init="chargement()">
+    <div class="w3-top w3-light-gray w3-padding w3-center" >
+        <Strong>Knote</Strong>
+    </div>
+    <div class="separMenu">    
+        <a href="#!categorie/{{cat.idcat}}" class="w3-btn  w3-padding-small" ng-repeat="cat in categories">
+            <i class="fa fa-folder w3-jumbo {{cat.couleur}}" ></i><br/>
+            <div style="width: 80px;text-overflow:ellipsis">{{cat.nomcat}}</div>
+        </a>
+        <h2 ng-if="none==0" class="w3-text-light-gray w3-padding">Pas de Categorie. Veillez creez </h2>
+    </div >    
+    <div class="w3-bar w3-bottom"> 
+        <div class="w3-bottom w3-margin-bottom" style="width: 50px;"> 
+            <div ng-if="option==true" class="w3-animate-left">    
+                <button class=" w3-btn w3-xlarge " ng-click="openModal('about')"><i class="fa fa-exclamation-circle"></i></button>
+                <button class=" w3-btn w3-xlarge " ng-click="openModal('manuel')"><i class="fa fa-book"></i></button>
+                <button class=" w3-btn w3-xlarge " ng-click="openModal('config')"><i class="fa fa-language"></i></button>
+            </div>  
+            <div class=" w3-xlarge w3-circdle w3-border w3-padding-small " ng-click="togleOption()" style="width: 30px;">
+                    <i ng-class="{rotation0:option==false,rotation180:option==true}" class="fa fa-angle-right"></i>
+            </div>
+        </div>
+        <span class="w3-button w3-xlarge w3-circle w3-right "></span>
+        <div class="w3-center w3-margin-bottom">
+            <button class="w3-button w3-xlarge w3-circle w3-black " ng-click="openModal('categorie')" style="border:5px solid #2196F3">+</button>
+        </div>
+    </div>    
+    <!-- Modal creation new Categorie-->
+    <div class="w3-modal w3-animate-zoom animate" id="newcategorie" ng-class="{modal : newcategorie=='show'}">        
+        <div class="w3-modal-content">
+            <form class="" ng-submit="newCategorie()">
+                <div class="w3-container w3-padding w3-light-gray w3-center">
+                    <header class="w3-large"><strong>Nouveau categorie</strong></header>
+                </div>
+                <input type="text" class="w3-input w3-border w3-round-large w3-margin-top" ng-model="categorieName" placeholder="Entrer le nom de la gategorie" maxlength="20">
+                <label class="w3-padding w3-opacity w3-tiny w3-pink w3-animate-left" ng-if="erreur==true">veillez entrer le nom de la categorie</label>
+                <p></p>
+                <div class="w3-center">
+                    <div class="w3-light-gray w3-btn w3-round-large w3-center w3-margin-bottom" ng-click="showColors()">Choisissez une couleur <i class="fa fa-angle-double-down	
+                        " ng-class="{rotation180:colors==true}"></i></div>            
+                    <div ng-show="colors" class="w3-container w3-bar w3-margin-top w3-margin-bottom w3-center w3-animate-right">
+                        <div class="w3-bar-item w3-btn w3-margin-right w3-red w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-red'"></div>
+                        <div class="w3-bar-item w3-btn w3-margin-right w3-yellow w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-yellow'"></div>
+                        <div class="w3-bar-item w3-btn w3-margin-right w3-pink w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-pink'"></div>
+                        <div class="w3-bar-item w3-btn w3-margin-right w3-green w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-green'"></div>
+                        <div class="w3-bar-item w3-btn w3-margin-right w3-blue w3-circle" style="width:30px ;height: 30px" ng-click="selectColor='w3-text-blue'"></div>
+                    </div>
+                </div>
+                <div class="w3-bar w3-container w3-light-gray w3-padding w3-border-top ">
+                    <input type="reset" value="Annuler" class="w3-button w3-red" ng-click="newcategorie='';selectColor=undefined;" >
+                    <input type="submit" value="Creer" class="w3-button w3-blue w3-right">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal About -->
+    <div class="w3-modal w3-animate-zoom animate" ng-class="{modal : infos=='show'}" ng-click="infos=''">
+        <div class="w3-modal-content">
+            <div id="profil" class="w3-container w3-padding-16 w3-center" style="font-family:Agency FB">
+                <!--img src="img/avatar.png" alt="Avatar" style="width:100%"-->			
+                    <span class="w3-tag w3-jumbo">K</span>
+                    <span class="w3-tag w3-jumbo w3-red">N</span>
+                    <span class="w3-tag w3-jumbo w3-yellow">O</span>
+                    <span class="w3-tag w3-jumbo w3-green">T</span>
+                    <span class="w3-tag w3-jumbo w3-blue">E</span><br/>
+                    <span class="w3-tag w3-border w3-border-white w3-center" stye="width:100%;">Devellopement</span>
+                    
+            </div>
+            <div class="w3-container" >            
+                <p>ibmussafb@gmail.com</p>			
+            </div>
+            <div>
+                <button class="w3-button w3-black w3-block w3-margin-top" ng-click="openModal('manuel')" >Manuel D'Utilisation</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal manuel -->
+    <div class="w3-modal w3-animate-zoom animate" ng-class="{modal : howTo=='show'}" >
+        <div class="w3-modal-content">
+            <header class=" w3-light-grey ">
+                <a class="w3-red w3-padding w3-right" ng-click="howTo=''">X</a>
+                <div class="w3-block w3-padding w3-center"><strong>Knote</strong></div>
+            </header>
+            <div class="w3-padding">&quot;Ambition&quot; lyrics WALE LYRICS &quot;Ambition&quot; (feat. Meek Mill &amp; Rick Ross) [Intro:] The time is now on everything Took my heart away from money Aint interested in fame But I pray that never change Ambition is priceless It’s something that’s in your veins And I put that on my name [Meek Mill:] Uh, the only hope I had was selling dope Was on my grind cause times was harder than the cellar floor My momma taught me never steal and never tell on folks I grew up looking up to niggas that was selling coke Oh, I was raised by the stop sign No religion I was getting saved by the glock nine By the minute I was getting paid like a hot line Servin' rollin' fiends was calling, we was dot com Well connected, well respected and well protected Aint get accepted, well rejected and now they regret it Aint get my message, was no signal when I was texting The niggas I was calling was fraud and I learned my lesson Now I move with aggression, use my mind as a weapon Cause chances are never given they tooken like interceptions So throw that pass, I’ll be the Corner back Me and Folarin MMG gon bring that Warner back [Hook:] For my Ambition Easy to dream a dream, though it’s harder to live it They gon love me for my Ambition Easy to dream a dream, though it’s harder to live it They gon love me for my Ambition Easy to dream a dream, though it’s harder to live it Look, they gon love me for my ambition Beautiful music, painting pictures that be my vision (It speaks for itself. Define Ambition for me?) [Rick Ross:] My ambition to win, just to get me some ends Help me pay my little rent, maybe sit in a Benz I saw momma praying as she wait on results It was hot in the kitchen can I wait on the porch My father was missing, War Lord Oliver North Life was diggin’ me deeper, I kept on coming up short Breaking so many laws, waking up in the dark Who cut my power off? it’s time to move that powder soft Not too many options when you coming from the projects Sittin’ in the trap now you moving Cyndi Lauper Girls wanna have fun, and a nigga with some change And I doubt that ever change Ambition is priceless that’s something thats in your veins And I doubt that ever change Ambition is my shit and I put that on my name And I doubt that ever change [Hook] [Wale:] Well wishes to my opposition You niggas probably cop a plea before you cop a pistol I got nothing against them, they got fucking potential But every nigga who can read gotta get his issue Subscribe niggas reside where all the lions and killers be And I aint spend a minute up in the streets But I’m limitless mentally, I’m lyrically ZMT Lebron shit, I was heading 6 after 23 And family is everything and money is less important Long as your mama love you, don’t ever love a woman I got a lot of bitches, they got a lot of feelings But I got that green on my eyes And that ain’t no Donnie Simpson I retire you niggas: fuck you and your position! They play surface so slippery niggas can’t even kick it Y’all rambling, talking shit to these bitches You know you real you don’t say it You know you real, we gon feel it Ralph! [Outro:] Beautiful music, painting pictures that be my vision They gon love me for my ambition Easy to dream a dream, though it’s harder to live it Look, they gon love me for my ambition Beautiful music, painting pictures that be my vision They gon love me for my ambition </div>        
+            <button class=" w3-btn w3-red w3-block" ng-click="howTo=''" >Quitter</button >
+        </div>
+    </div>
+    <!-- modal config -->
+    <div class="w3-modal w3-animate-zoom animate" ng-class="{modal : config=='show'}" >
+        <div class="w3-modal-content">
+            <form class="" ng-submit="setLangue()">
+                <header class=" w3-light-grey ">                    
+                    <div class="w3-block w3-padding w3-center"><strong>Option</strong></div>
+                </header>
+                <div class="w3-container  w3-center">
+                    <div class="w3-padding w3-light-gray w3-margin-top w3-row">Changer la Langue 
+                        
+                    </div>
+                    <!-- <div ng-if="langColect==true" class="w3-row  w3-border-bottom"> -->
+                    <div class="w3-col s4"><input type="radio" class="w3-radio" name="langue" ng-model="langue" value="fr-FR"  />francais</div>
+                    <div class="w3-col s4"><input type="radio" class="w3-radio" name="langue" ng-model="langue" value="en-US"  />Anglais</div>
+                    <!-- <div class="w3-col s4"><input type="radio" class="w3-radio" name="langue" ng-model="langue" value="sw-SW"  />swahili</div> -->
+                    <!-- </div> -->
+                </div>
+                <div class="w3-row w3-margin-top">
+                    <button type="reset" class="w3-col s6 w3-btn w3-red" ng-click="config=''">Quitter</button >
+                    <button type="submit" class="w3-col s6 w3-btn w3-blue ">Enregister</button >
+                </div>
+            </form>                    
+        </div>
+    </div>
+    <loader></loader>
+</div>
